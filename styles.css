@@ -1,0 +1,18 @@
+body, html {
+  height: 100%;
+}
+
+.h-33 {
+	height: 33.33333%;
+}
+
+.w-33 {
+	width: 33.333333%;
+	text-align: center;
+	line-height: 200px;
+}
+
+#display {
+	font-size: 40px;
+	text-align: center;
+}

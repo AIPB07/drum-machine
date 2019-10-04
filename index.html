@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="styles.css">
+		<title>Drum Machine</title>
+	</head>
+
+	<body>
+		<div class="container-fluid h-100" id="drum-machine">
+			<div class="row h-25"><div class="col-sm-12"></div></div>
+			<div class="row h-50">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-6 h-100">
+					<div class="d-flex bg-primary h-33">
+						<div class="w-33 border">
+							<button onclick="playSound(this.firstChild.id)" id="Clap01" type="button" class="btn-success btn-lg drum-pad"><audio class="clip" id="Q" src="sounds/Clap01.wav"></audio>Q</button>
+						</div>
+						<div class="w-33 border">
+							<button onclick="playSound(this.firstChild.id)" id="FX01" type="button" class="btn-success btn-lg drum-pad"><audio class="clip" id="W" src="sounds/FX01.wav"></audio>W</button>
+						</div>
+						<div class="w-33 border">
+							<button onclick="playSound(this.firstChild.id)" id="FX02" type="button" class="btn-success btn-lg drum-pad"><audio class="clip" id="E" src="sounds/FX02.wav"></audio>E</button>
+						</div>
+					</div>
+					<div class="d-flex bg-success h-33">
+						<div class="w-33 border">
+							<button onclick="playSound(this.firstChild.id)" id="Snare01" type="button" class="btn-primary btn-lg drum-pad"><audio class="clip" id="A" src="sounds/Snare01.wav"></audio>A</button>
+						</div>
+						<div class="w-33 border">
+							<button onclick="playSound(this.firstChild.id)" id="Snare02" type="button" class="btn-primary btn-lg drum-pad"><audio class="clip" id="S" src="sounds/Snare02.wav"></audio>S</button>
+						</div>
+						<div class="w-33 border">
+							<button onclick="playSound(this.firstChild.id)" id="Hat01" type="button" class="btn-primary btn-lg drum-pad"><audio class="clip" id="D" src="sounds/Hat01.wav"></audio>D</button>
+						</div>
+					</div>
+					<div class="d-flex bg-warning h-33">
+						<div class="w-33 border">
+							<button onclick="playSound(this.firstChild.id)" id="Kick01" type="button" class="btn-danger btn-lg drum-pad"><audio class="clip" id="Z" src="sounds/Kick01.wav"></audio>Z</button>
+						</div>
+						<div class="w-33 border">
+							<button onclick="playSound(this.firstChild.id)" id="Kick02" type="button" class="btn-danger btn-lg drum-pad"><audio class="clip" id="X" src="sounds/Kick02.wav"></audio>X</button>
+						</div>
+						<div class="w-33 border">
+							<button onclick="playSound(this.firstChild.id)" id="Kick03" type="button" class="btn-danger btn-lg drum-pad"><audio class="clip" id="C" src="sounds/Kick03.wav"></audio>C</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3"></div>
+			</div>
+			<div class="row h-25">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-6" id="display">Display</div>
+				<div class="col-sm-3"></div>
+			</div>
+		</div>
+	</body>
+
+	<!-- Load jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<script>
+
+		function playSound(id) {
+				document.getElementById(id).play();
+				document.getElementById('display').innerHTML = document.getElementById(id).parentElement.id;
+			}
+
+		$(document).ready(function() {
+
+			// Function for handling keypress events
+			function handleKeypress(id) {
+				console.log('You pressed' + id);
+				$("#"+id).parent().addClass('active');
+				$("#"+id).click();
+			}
+
+			// Function for handling keyup events
+			function handleKeyup(id) {
+				$("#"+id).parent().removeClass('active');
+			}
+
+			// Listen for keypress events
+			$(document).keypress(function(event) {
+				handleKeypress(String.fromCharCode(event.which).toUpperCase());
+			});
+
+			// Listen for keyup events
+			$(document).keyup(function(event) {
+				handleKeyup(String.fromCharCode(event.which));
+			});
+		});
+
+	</script>
+
+</html>
